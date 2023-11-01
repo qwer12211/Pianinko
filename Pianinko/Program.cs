@@ -1,21 +1,19 @@
-﻿using System;
-using System.Threading;
+using System;
+
 class Piano
 {
-    static int[] fourdoctave = new int[] { 261,277, 293, 311, 329, 349, 370, 392, 415, 440, 466, 493 }; // Частоты для четвёртой октавы (C4-B4) 
-    static int[] fithoctave = new int[] { 523, 554, 587, 622, 659, 698, 740, 784, 830, 880, 932, 987 }; // Частоты для пятой  октавы (C5-B5) 
-    static int[] sixthoctave = new int[] { 1047, 1109, 1175, 1245, 1319, 1397, 1480, 1568, 1661, 1760, 1865, 1976 };  // Частоты для шестой октавы (C6-B6)
-    static int[] nashatoctave; // Текущая октава 
+    static int[] fourdoctave = new int[] { 261, 277, 293, 311, 329, 349, 370, 392, 415, 440, 466, 493 }; 
+    static int[] fithoctave = new int[] { 523, 554, 587, 622, 659, 698, 740, 784, 830, 880, 932, 987 };  
+    static int[] sixthoctave = new int[] { 1047, 1109, 1175, 1245, 1319, 1397, 1480, 1568, 1661, 1760, 1865, 1976 };  
+    static int[] currentOctave; 
     static bool running = true;
+
     static void Main(string[] args)
     {
-        Console.WriteLine("Приветсвую вас в консольном пианино.");
-        Console.WriteLine("Нажмите Q, W, E, R, T, Y, U для белых клавиш. Для черных клавиш  используйте Z,X,C, V.");
-        Console.WriteLine("Нажмите F4, F5, F6 для переключения между четвёртой, пятой, шестой октавами.");
-        Console.WriteLine("Для выхода нажмите Esc.");
-
+        Console.WriteLine("Используйте Q, W, E, R, T, Y, U белых клавиш. Use Z, X, C, V для чёрных клавиш.");
+        Console.WriteLine("Нажмите для  F4, F5, F6 для переключения между четвёртойБ пятойБ шестой октавой.");
         ConsoleKeyInfo keyInfo;
-        nashatoctave = fourdoctave;
+        currentOctave = fourdoctave;
 
         while (running)
         {
@@ -27,17 +25,17 @@ class Piano
             }
             else if (keyInfo.Key == ConsoleKey.F4)
             {
-                nashatoctave = fourdoctave;
+                currentOctave = fourdoctave;
                 Console.WriteLine("Четвёртая октава.");
             }
             else if (keyInfo.Key == ConsoleKey.F5)
             {
-                nashatoctave = fithoctave;
+                currentOctave = fithoctave;
                 Console.WriteLine("Пятая октава.");
             }
             else if (keyInfo.Key == ConsoleKey.F6)
             {
-                nashatoctave = sixthoctave;
+                currentOctave = sixthoctave;
                 Console.WriteLine("Шестая октава.");
             }
             else
@@ -46,56 +44,68 @@ class Piano
             }
         }
     }
+
     static void PlaySound(ConsoleKey key)
     {
         int index = -1;
 
-        switch (key)
+        if (key == ConsoleKey.Q)
         {
-            case ConsoleKey.Q:
-                index = 0;
-                break;
-            case ConsoleKey.Z:
-                index = 1;
-                break;
-            case ConsoleKey.W:
-                index = 2;
-                break;
-            case ConsoleKey.X:
-                index = 3;
-                break;
-            case ConsoleKey.E:
-                index = 4;
-                break;
-            case ConsoleKey.R:
-                index = 5;
-                break;
-            case ConsoleKey.C:
-                index = 6;
-                break;
-            case ConsoleKey.T:
-                index = 7;
-                break;
-            case ConsoleKey.Y:
-                index = 8;
-                break;
-            case ConsoleKey.U:
-                index = 9;
-                break;
-            case ConsoleKey.V:
-                index = 10;
-                break;
-            case ConsoleKey.I:
-                index = 11;
-                break ;
-            case ConsoleKey.O:
-                index = 12;
-                break ;
+            index = 0;
         }
+        else if (key == ConsoleKey.W)
+        {
+            index = 1;
+        }
+        else if (key == ConsoleKey.E)
+        {
+            index = 2;
+        }
+        else if (key == ConsoleKey.R)
+        {
+            index = 3;
+        }
+        else if (key == ConsoleKey.T)
+        {
+            index = 4;
+        }
+        else if (key == ConsoleKey.Y)
+        {
+            index = 5;
+        }
+        else if (key == ConsoleKey.U)
+        {
+            index = 6;
+        }
+        else if (key == ConsoleKey.Z)
+        {
+            index = 7;
+        }
+        else if (key == ConsoleKey.X)
+        {
+            index = 8;
+        }
+        else if (key == ConsoleKey.C)
+        {
+            index = 9;
+        }
+        else if (key == ConsoleKey.V)
+        {
+            index = 10;
+        }
+        else if (key == ConsoleKey.B)
+        {
+            index = 11;
+        }
+        else if (key == ConsoleKey.N)
+        {
+            index = 12;
+        }
+
         if (index >= 0)
         {
-            int ZXC = nashatoctave[index];
-            Console.Beep(ZXC, 650);
+            int frequency = currentOctave[index];
+            Console.Beep(frequency, 650);
         }
     }
 }
