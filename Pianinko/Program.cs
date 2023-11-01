@@ -10,7 +10,7 @@ class Piano
 
     static void Main(string[] args)
     {
-        Console.WriteLine("Используйте Q, W, E, R, T, Y, U белых клавиш. Use Z, X, C, V для чёрных клавиш.");
+        Console.WriteLine("Используйте Q, W, E, R, T, Y, U, I, O белых клавиш. Use Z, X, C, V для чёрных клавиш.");
         Console.WriteLine("Нажмите для  F4, F5, F6 для переключения между четвёртойБ пятойБ шестой октавой.");
         ConsoleKeyInfo keyInfo;
         currentOctave = fourdoctave;
@@ -93,11 +93,11 @@ class Piano
         {
             index = 10;
         }
-        else if (key == ConsoleKey.B)
+        else if (key == ConsoleKey.I)
         {
             index = 11;
         }
-        else if (key == ConsoleKey.N)
+        else if (key == ConsoleKey.O)
         {
             index = 12;
         }
